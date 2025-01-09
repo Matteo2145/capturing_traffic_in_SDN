@@ -39,19 +39,19 @@ def createNetwork(k=3):
 
     info('*** Creating links\n')
     # Router & Switch links
-    net.addLink(s1, r1,bw=100*8, delay='10ms', max_queue_size=1000)
-    net.addLink(s1, intra)
-    net.addLink(s1, s3, delay='9ms', max_queue_size=1000)
+    net.addLink(s1, r1,bw=500, delay='10ms', max_queue_size=1000)
+    net.addLink(s1, intra, bw=1000)
+    net.addLink(s1, s3, bw=1000,delay='9ms', max_queue_size=1000)
 
-    net.addLink(s2, r2,bw=70*8, delay='14ms', max_queue_size=1000)
-    net.addLink(s2, s3, delay='12ms', max_queue_size=1000)
-    net.addLink(s2, s4, delay='11ms', max_queue_size=1000)
+    net.addLink(s2, r2,bw=250, delay='14ms', max_queue_size=1000)
+    net.addLink(s2, s3, bw=1000,delay='12ms', max_queue_size=1000)
+    net.addLink(s2, s4, bw=1000,delay='11ms', max_queue_size=1000)
 
-    net.addLink(s4, dns)
+    net.addLink(s4, dns, bw=1000)
 
     # Switch to Host links
     for i in range(0, k):
-        net.addLink(s3, webservers[i],bw=50*8)
+        net.addLink(s3, webservers[i],bw=250)
 
     info('*** Starting network\n')
     net.start()
